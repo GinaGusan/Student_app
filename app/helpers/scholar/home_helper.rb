@@ -1,0 +1,2 @@
+module Scholar::HomeHelper
+end

@@ -1,0 +1,7 @@
+%h1 List of all available faculties
+= link_to 'Add new faculty', new_university_faculty_path
+%hr
+- @faculties.each do |u|
+	%b
+		= link_to u.title, { :controller => :faculties, :action => :show, :id => u.id, :method => :get}
+	%hr

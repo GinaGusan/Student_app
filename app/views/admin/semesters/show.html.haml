@@ -1,0 +1,27 @@
+%h1
+	= @semester.sem_number
+=link_to 'Add course', {:controller => :courses, :action => :new, :semester_id => @semester.id, :group_id => @group.id, :specialty_id => @specialty.id, :faculty_id => @faculty.id, :university_id => @university.id}, :method => :get
+%hr
+- @semester.courses.sort{|l,r| l.day <=> r.day}.group_by{|c| c.day}.each do |day, courses|
+	%h4 
+		= Course.working_days.keys[day]
+	- courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
+		%b
+			= c.title
+		%br
+		= Course.course_starting_hours.keys[c.start_time]
+		%br
+		= Course.course_ending_hours.keys[c.end_time]
+		%br
+		= c.room_num
+		%br
+		= c.type_lesson
+		%br
+		= c.teacher_name
+		%br
+		= link_to 'Delete course', {:controller => :courses, :action => :destroy, :id => c.id, :semester_id => c.semester.id, :group_id => c.semester.group.id, :specialty_id => c.semester.group.specialty.id, :faculty_id => c.semester.group.specialty.faculty.id, :university_id => c.semester.group.specialty.faculty.university.id}, :method => :delete
+		%br
+		= link_to 'Edit course', {:controller => :courses, :action => :edit, :id => c.id, :semester_id => c.semester.id, :group_id => c.semester.group.id, :specialty_id => c.semester.group.specialty.id, :faculty_id => c.semester.group.specialty.faculty.id, :university_id => c.semester.group.specialty.faculty.university.id}, :method => :get
+		%br
+		%br
+

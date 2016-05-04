@@ -1,0 +1,14 @@
+%h1
+	= @faculty.title
+%h2 All specialties
+
+= link_to 'Add specialty', {:controller => :specialties, :action => :new, :faculty_id => @faculty.id, :university_id => @faculty.university.id}, :method => :get
+%br
+- @faculty.specialties.each do |s|
+	%b
+		= link_to s.title, {:controller => :specialties, :action => :show, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}
+	%br
+	= link_to 'Delete specialty', {:controller => :specialties, :action => :destroy, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}, :method => :delete
+	%br
+	= link_to 'Edit specialty', {:controller => :specialties, :action => :edit, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}, :method => :get
+	%hr

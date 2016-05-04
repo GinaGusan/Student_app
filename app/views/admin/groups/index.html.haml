@@ -1,0 +1,8 @@
+%h1 List of all available groups
+
+= link_to 'Add new group', new_university_faculty_specialty_group_path
+%br
+- @groups.each do |g|
+	%b
+		= g.title
+	%hr

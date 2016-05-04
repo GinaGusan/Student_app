@@ -1,0 +1,25 @@
+%h1 
+	= @university.title
+%h1 All faculties
+= link_to 'Add faculty', {:controller => :faculties, :action => :new, :university_id => @university.id}, :method => :get
+%hr
+- @university.faculties.each do |f|
+	%b
+		= link_to f.title, {:controller => :faculties, :action => :show, :id => f.id, :university_id => f.university.id}, :method => :get
+	%br
+	= link_to 'Delete faculty', admin_university_faculty_path(:id => f.id, :university_id => f.university.id), :method => :delete
+	%br
+	= link_to 'Edit faculty', {:controller => :faculties, :action => :edit, :id => f.id, :university_id => f.university.id}
+	%hr
+%h2 All teachers
+= link_to 'Add teacher', {:controller => :teachers, :action => :new, :university_id => @university.id}, :method => :get
+%br
+- @university.teachers.each do |t|
+	%b
+		= link_to t.name, {:controller => :teachers, :action => :show, :university_id => t.university.id, :id => t.id}
+	%br
+	= link_to 'Delete teacher', {:controller => :teachers, :action => :destroy, :university_id => t.university.id, :id => t.id}, :method => :delete
+	%br
+	= link_to 'Edit teacher', {:controller => :teachers, :action => :edit, :university_id => t.university.id, :id => t.id}, :method => :get
+	%hr
+

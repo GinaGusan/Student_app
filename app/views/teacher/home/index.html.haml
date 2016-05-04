@@ -1,0 +1,71 @@
+%h1 Hi teacher's home page
+
+= link_to 'Sign in', teacher_session_path, :method => :post
+= link_to 'Sign out', destroy_teacher_session_path, :method => :delete
+%br
+= link_to 'Go to timetable', teacher_timetables_path
+%br
+/ %ul
+/ 	- @courses.each do |t|
+/ 		%li
+/ 			%h3
+/ 				= t.title
+/ 			Semester:
+/ 			= Semester.find(t.semester_id).sem_number
+/
+/ - @courses.semesters.group.each do |s|
+/ 	%b
+/ 		= Group.find(s.group_id).title
+/ 		%br
+
+/ - @courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
+/ 	- if Time.now.strftime("%A") == Course.working_days.keys[c.day]
+/ 		%h2
+/ 			= Course.working_days.keys[c.day]
+/ 		%br
+/ 		%b
+/ 			= c.title
+/ 		%br
+/ 		= Course.course_starting_hours.keys[c.start_time]
+/ 		%br
+/ 		= Course.course_ending_hours.keys[c.end_time]
+/ 		%br
+/ 		= c.room_num
+/ 		%br
+/ 		= c.type_lesson
+/ 		%br
+/ 		= c.teacher_name
+/ 		%br
+/ 		= c.semester.group.title
+/ 		%br
+/ 		= c.semester.group.specialty.faculty.title
+- @courses.sort{|l,r| l.day <=> r.day}.group_by{|c| c.day}.each do |day, courses|
+	- if Time.now.strftime("%A") == Course.working_days.keys[day]
+		%h4 
+			= Course.working_days.keys[day]
+	- courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
+		%b
+			= c.title
+		%br
+		= Course.course_starting_hours.keys[c.start_time]
+		%br
+		= Course.course_ending_hours.keys[c.end_time]
+		%br
+		= c.room_num
+		%br
+		= c.type_lesson
+		%br
+		= c.teacher_name
+		%br
+		= c.semester.group.title
+		%br
+		= c.semester.sem_number
+		%br
+		= c.semester.group.specialty.faculty.title
+		%br
+
+		
+		
+
+
+

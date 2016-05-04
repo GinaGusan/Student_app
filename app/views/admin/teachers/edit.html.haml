@@ -1,0 +1,7 @@
+%h1 Edit teacher
+= form_for [:admin, @university, @teacher] do |f|
+  = f.label ' Teacher name'
+  = f.text_field :name
+  = f.select :teacher_faculty, options_from_collection_for_select(Faculty.all, 'title', 'title') 
+  - f.text_field :teacher_department
+  = f.submit 'Submit'

@@ -1,0 +1,12 @@
+%h1 New course
+
+= form_for [:admin, @university, @faculty, @specialty, @group, @semester, @course] do |c|
+	= c.label "Add course's title"
+	= c.text_field :title
+	= c.select :start_time, options_for_select(Course.course_starting_hours)
+	= c.select :room_num, options_for_select: [100,101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+	= c.select :type_lesson, options_for_select: ['assignment', 'exam', 'consultation', 'lab']
+	= c.select :teacher_name, options_from_collection_for_select(Teacher.all, 'name', 'name')
+	= c.select :day, options_for_select(Course.working_days)
+	= c.submit
+

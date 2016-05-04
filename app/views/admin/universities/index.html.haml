@@ -1,0 +1,10 @@
+%h1 All universities
+
+- @universities.each do |u|
+	%b
+		= link_to u.title, {:controller => :universities, :action => :show, :id => u.id, :method => :get}
+		%br
+		=link_to 'Delete university', {:controller => :universities, :action => :destroy, :id => u.id}, :method => :delete
+		%br
+		= link_to 'Edit university', {:controller => :universities, :action => :edit, :id => u.id}, :method => :get
+	%hr

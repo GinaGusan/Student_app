@@ -1,0 +1,17 @@
+%h1 Hi home page
+
+= form_for :university, url: admin_universities_path do |f|
+	= f.label "Add university"
+	= f.text_field :title
+	= f.submit
+= link_to 'Sign in as admin', admin_session_path, :method => :post
+= link_to 'Sign out as admin', destroy_admin_session_path, :method => :delete
+%br
+= link_to 'Sign in as teacher', teacher_session_path, :method => :post
+= link_to 'Sign out as teacher', destroy_teacher_session_path, :method => :delete
+%br
+= link_to 'Sign in as student', scholar_session_path, :method => :post
+= link_to 'Sign out as student', destroy_scholar_session_path, :method => :delete
+%br
+= link_to 'All universities', admin_universities_path
+

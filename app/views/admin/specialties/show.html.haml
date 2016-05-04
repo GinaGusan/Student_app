@@ -1,0 +1,14 @@
+%h1 
+	= @specialty.title
+%h2 All groups
+
+= link_to 'Add group', {:controller => :groups, :action => :new, :specialty_id => @specialty.id, :faculty_id => @specialty.faculty.id, :university_id => @specialty.faculty.university.id}, :method => :get
+%hr
+- @specialty.groups.each do |g|
+	%b
+		= link_to g.title, {:controller => :groups, :action => :show, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :mehthod => :get
+	%br
+	= link_to 'Delete group', {:controller => :groups, :action => :destroy, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :method => :delete
+	%br
+	= link_to 'Edit group', {:controller => :groups, :action => :edit, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :method => :get
+	%hr
