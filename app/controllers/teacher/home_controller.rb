@@ -6,11 +6,7 @@ class Teacher::HomeController < TeachersController
 		@courses = Course.where(teacher_name: current_teacher.name)
 	end
 
-	# def show
-	# 	@course = @semester.courses.find(params[:id])
-	# 	# @semester = @group.semesters.find(params[:id])
-	# end
-
+	private
 	def set_university
     	@university = University.find(current_teacher.university_id)  
   	end

@@ -1,5 +1,5 @@
 class Teacher::TimetablesController < TeachersController
-	def show
-		
+	def index 
+		@courses = Course.where(teacher_name: current_teacher.name)
 	end
 end

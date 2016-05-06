@@ -1,1 +1,38 @@
 %h1 Hi student's home page
+= link_to 'Sign in', scholar_session_path, :method => :post
+= link_to 'Sign out', destroy_scholar_session_path, :method => :delete
+%br
+= link_to 'Go to timetable', scholar_timetables_path
+%br
+- @courses.sort{|l,r| l.day <=> r.day}.group_by{|c| c.day}.each do |day, courses|
+	- if Time.now.strftime("%A") == Course.working_days.keys[day]
+		%h3 
+			= Course.working_days.keys[day]
+		- courses.each do |course|
+			"current scholar ids"
+			= current_scholar.group_id
+			""
+			= course.semester.group_id
+			%br
+			- if current_scholar.group_id == course.semester.group_id
+				- courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
+					%b
+						= c.title
+					%br
+					= Course.course_starting_hours.keys[c.start_time]
+					%br
+					= Course.course_ending_hours.keys[c.end_time]
+					%br
+					= c.room_num
+					%br
+					= c.type_lesson
+					%br
+					= c.teacher_name
+					%br
+					= c.semester.group.title
+					%br
+					= c.semester.sem_number
+					%br
+					= c.semester.group.specialty.faculty.title
+					%br
+					%br

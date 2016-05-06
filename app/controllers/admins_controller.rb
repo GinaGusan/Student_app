@@ -29,7 +29,7 @@ class AdminsController < ApplicationController
 	# def admin_params
 	# 	params.require(:admin_id).permit(:email, :password)
 	# end
-end
+
 # class AdminsController < ApplicationController
 
 # 	before_action :authenticate_admin!
@@ -54,3 +54,4 @@ end
 # 		redirect_to root_path
 # 	end
 # end
+end

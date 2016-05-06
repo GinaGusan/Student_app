@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   namespace :scholar do
     get '/' => 'home#index'
-    # resources :timetables
+    resources :timetables
   end
 
   root 'home#index'
