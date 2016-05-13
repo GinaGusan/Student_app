@@ -1,0 +1,6 @@
+%h3 Update profile details
+
+= form_for [:scholar, @semester] do |s|
+	= s.label "Select semester"
+	= s.select :semester_number, options_from_collection_for_select(Semester.all, 'sem_number', 'sem_numbers')
+	= s.submit

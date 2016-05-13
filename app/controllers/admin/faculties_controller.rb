@@ -44,8 +44,8 @@ class Admin::FacultiesController < AdminsController
 		params.require(:faculty).permit(:university_id, :title)
 	end
 
-  def set_university
-    @university = University.find(params[:university_id])  
-  end
+  	def set_university
+    	@university = University.find(params[:university_id])  
+  	end
 
 end

@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
 	belongs_to :semester
+	has_one :group, through: :semester
 
 	enum working_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 	enum course_starting_hours: ['8:00', '9:35', '11:10', '12:40', '14:10', '15:40', '17:10', '18:40']

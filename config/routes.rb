@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   namespace :scholar do
     get '/' => 'home#index'
     resources :timetables
+    get 'profile' => 'profiles#show', as: :profile
+    get 'profile/edit' => 'profiles#edit', as: :edit
+    match 'profile/update' => 'profiles#update', as: :update, via: [:put, :patch]
   end
 
   root 'home#index'

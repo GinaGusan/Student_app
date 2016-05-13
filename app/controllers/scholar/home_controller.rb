@@ -1,11 +1,12 @@
 class Scholar::HomeController < ScholarsController
 
 	def index
-		@courses = Course.all
-		
-	end
+		@courses = []
+		Course.all.each do |c|
+			if c.group.id == current_scholar.group_id
+				@courses << c
 
-	# def show
-	# 	@semester = Semester.where(group_id: current_scholar.group_id)
-	# end
+			end
+		end	
+	end
 end

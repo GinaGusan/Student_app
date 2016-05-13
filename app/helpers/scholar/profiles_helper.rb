@@ -1,0 +1,2 @@
+module Scholar::ProfilesHelper
+end
