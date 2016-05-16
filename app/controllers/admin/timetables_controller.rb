@@ -12,6 +12,7 @@ class Admin::TimetablesController < AdminsController
 
 	def new
 		@timetable = Timetable.new
+		respond_to :html, :js
 	end
 
 	def create

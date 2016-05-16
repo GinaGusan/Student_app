@@ -12,6 +12,7 @@ class Admin::SpecialtiesController < AdminsController
 
 	def new
 		@specialty = @faculty.specialties.new
+		respond_to :html, :js
 	end
 
 	def create
@@ -23,6 +24,7 @@ class Admin::SpecialtiesController < AdminsController
 
 	def edit
 		@specialty = @faculty.specialties.find(params[:id])
+		respond_to :html, :js
 	end
 
 	def update

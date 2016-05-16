@@ -1,0 +1,3 @@
+var editTeacher = $('#edit-teacher-'+'<%= params[:id] %>')
+console.log('<%= params[:id] %>')
+editTeacher.html('<%=j render partial: "edit" %>')

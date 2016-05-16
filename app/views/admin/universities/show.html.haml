@@ -1,7 +1,8 @@
 %h1 
 	= @university.title
 %h1 All faculties
-= link_to 'Add faculty', {:controller => :faculties, :action => :new, :university_id => @university.id}, :method => :get
+= link_to 'Add faculty', {:controller => :faculties, :action => :new, :university_id => @university.id}, :method => :get, :remote => true
+#new-faculty
 %hr
 - @university.faculties.each do |f|
 	%b
@@ -9,7 +10,8 @@
 	%br
 	= link_to 'Delete faculty', admin_university_faculty_path(:id => f.id, :university_id => f.university.id), :method => :delete
 	%br
-	= link_to 'Edit faculty', {:controller => :faculties, :action => :edit, :id => f.id, :university_id => f.university.id}
+	= link_to 'Edit faculty', {:controller => :faculties, :action => :edit, :id => f.id, :university_id => f.university.id}, :remote => true
+	.edit-faculty{:id => "edit-faculty-#{f.id}"}
 	%hr
 %h2 All teachers
 = link_to 'Add teacher', {:controller => :teachers, :action => :new, :university_id => @university.id}, :method => :get

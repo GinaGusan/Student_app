@@ -1,6 +1,7 @@
 %h1
 	= @group.title
-= link_to 'Add timetable', {:controller => :timetables, :action => :new, :group_id => @group.id, :specialty_id => @specialty.id, :faculty_id => @faculty.id, :university_id => @university.id}, :method => :get
+= link_to 'Add timetable', {:controller => :timetables, :action => :new, :group_id => @group.id, :specialty_id => @specialty.id, :faculty_id => @faculty.id, :university_id => @university.id}, :method => :get, :remote => true
+#new-timetable
 %hr
 %b
 = link_to @group.timetable.current_timetable, {:controller => :timetables, :action => :show, :id => @group.timetable.id, :group_id => @group.timetable.group.id, :specialty_id => @group.timetable.group.specialty.id, :faculty_id => @group.timetable.group.specialty.faculty.id, :university_id => @group.timetable.group.specialty.faculty.university.id}, :method =>:get

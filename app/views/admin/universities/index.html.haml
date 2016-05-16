@@ -6,5 +6,6 @@
 		%br
 		=link_to 'Delete university', {:controller => :universities, :action => :destroy, :id => u.id}, :method => :delete
 		%br
-		= link_to 'Edit university', {:controller => :universities, :action => :edit, :id => u.id}, :method => :get
+		= link_to 'Edit university', {:controller => :universities, :action => :edit, :id => u.id}, :method => :get, :remote => true
+		.edit-university{:id => "edit-university-#{u.id}"}
 	%hr

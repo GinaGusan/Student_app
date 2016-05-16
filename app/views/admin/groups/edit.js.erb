@@ -1,0 +1,3 @@
+var editGroup = $('#edit-group-'+'<%= params[:id] %>')
+console.log('<%= params[:id] %>')
+editGroup.html('<%=j render partial: "edit" %>')

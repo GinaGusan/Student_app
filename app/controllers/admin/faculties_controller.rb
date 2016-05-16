@@ -12,10 +12,12 @@ class Admin::FacultiesController < AdminsController
 
 	def edit
 		@faculty = @university.faculties.find(params[:id])
+		respond_to :html, :js
 	end
 
 	def new
 		@faculty = @university.faculties.new
+		respond_to :html, :js
 	end
 
 	def create

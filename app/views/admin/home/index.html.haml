@@ -1,9 +1,11 @@
 %h1 Hi admin's home page
 
-= form_for :university, url: admin_universities_path do |f|
-	= f.label "Add university"
-	= f.text_field :title
-	= f.submit
+= link_to 'New university', new_admin_university_path, :method =>:get, :remote => true
+%br
+#new-university
+%br
 = link_to 'Sign in', admin_session_path, :method => :post
+%br
 = link_to 'Sign out', destroy_admin_session_path, :method => :delete
+%br
 = link_to 'All universities', admin_universities_path

@@ -1,5 +1,4 @@
-%h1 New specialty
 = form_for [:admin, :university, :faculty, @specialty] do |s|
 	= s.label "Add specialty"
 	= s.text_field :title
-	= s.submit
+	= s.submit 'Create'

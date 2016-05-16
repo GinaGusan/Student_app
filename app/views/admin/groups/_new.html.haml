@@ -1,5 +1,4 @@
-%h1 New group
 = form_for [:admin, :university, :faculty, :specialty, @group] do |g|
 	= g.label "Add group"
 	= g.text_field :title
-	= g.submit
+	= g.submit 'Create'

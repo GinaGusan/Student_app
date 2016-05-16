@@ -12,6 +12,7 @@ class Admin::GroupsController < AdminsController
 
 	def new
 		@group = @specialty.groups.new 
+		respond_to :html, :js
 	end
 
 	def create
@@ -23,6 +24,7 @@ class Admin::GroupsController < AdminsController
 
 	def edit
 		@group = @specialty.groups.find(params[:id])
+		respond_to :html, :js
 	end
 
 	def update

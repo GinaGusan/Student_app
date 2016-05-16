@@ -1,0 +1,11 @@
+= form_for [:admin, :university, @teacher] do |f|
+  = f.label 'Teacher name'
+  = f.text_field :name
+  = f.select :teacher_faculty, options_from_collection_for_select(Faculty.all, 'title', 'title')
+  = f.label 'Teacher department' 
+  = f.text_field :teacher_department
+  = f.label :email
+  = f.email_field :email, autofocus: true
+  = f.label :password
+  = f.text_field :password, autocomplete: "off"
+  = f.submit 'Submit'

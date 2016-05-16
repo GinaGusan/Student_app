@@ -1,0 +1,4 @@
+= form_for [:admin, @university, @faculty, @specialty, @group] do |f|
+  = f.label ' Group name'
+  = f.text_field :title
+  = f.submit 'Submit'

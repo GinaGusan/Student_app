@@ -17,10 +17,12 @@ class Admin::UniversitiesController < AdminsController
 
 	def new
     	@university = University.new
+    	respond_to :html, :js
 	end
 
 	def edit
     	@university = University.find(params[:id])
+    	respond_to :html, :js
 	end
 
 	def update
@@ -34,7 +36,7 @@ class Admin::UniversitiesController < AdminsController
 
 	def destroy
 	    @university = University.delete(params[:id])
-			redirect_to :action => :index
+		redirect_to :action => :index
 	end
 
   private
