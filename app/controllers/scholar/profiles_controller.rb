@@ -1,28 +1,28 @@
 class Scholar::ProfilesController < ScholarsController
 
-	before_action :set_group
+	def index
+		@scholars = Scholar.all
+	end
+
+	def show
+		@scholar = current_scholar
+	end
 
 	def edit
-		@semester = @group.semesters
+		@scholar = current_scholar
 	end
 
 	def update
 		@scholar = current_scholar
-		if @scholar.update
+		if @scholar.update scholar_params
 			redirect_to scholar_profile_path @scholar.id
+		else
+			render :edit
 		end
-	end
-
-	def show
-		@scholar = @group.scholars.find(params[:id])
 	end
 
 	private
 	def scholar_params
-		params.require(:scholar).permit(:group_id, :email, :password, :group_name, :semester_number)
-	end
-
-	def set_group
-		@group = Group.find.params(:group_id)
+		params.require(:scholar).permit(:group_id, :email, :password, :name)
 	end
 end

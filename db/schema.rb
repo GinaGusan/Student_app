@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513111002) do
+ActiveRecord::Schema.define(version: 20160514113821) do
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at",                          null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160513111002) do
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "semester_id"
+    t.integer  "timetable_id"
     t.string   "title"
     t.integer  "start_time"
     t.integer  "end_time"
@@ -72,17 +72,11 @@ ActiveRecord::Schema.define(version: 20160513111002) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "group_id"
+    t.string   "name"
   end
 
   add_index "scholars", ["email"], name: "index_scholars_on_email", unique: true
   add_index "scholars", ["reset_password_token"], name: "index_scholars_on_reset_password_token", unique: true
-
-  create_table "semesters", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "group_id"
-    t.integer  "sem_number"
-  end
 
   create_table "specialties", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -112,6 +106,13 @@ ActiveRecord::Schema.define(version: 20160513111002) do
 
   add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true
   add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
+
+  create_table "timetables", force: :cascade do |t|
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "group_id"
+    t.string   "current_timetable"
+  end
 
   create_table "universities", force: :cascade do |t|
     t.datetime "created_at", null: false

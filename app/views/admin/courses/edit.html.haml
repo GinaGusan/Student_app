@@ -1,6 +1,6 @@
 %h1 Edit course
 
-= form_for [:admin, @university, @faculty, @specialty, @group, @semester, @course] do |c|
+= form_for [:admin, @university, @faculty, @specialty, @group, @timetable, @course] do |c|
 	= c.label "Add course's title"
 	= c.text_field :title
 	= c.select :start_time, options_for_select(Course.course_starting_hours)

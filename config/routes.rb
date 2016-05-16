@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :faculties do
         resources :specialties do
           resources :groups do
-            resources :semesters do
+            resources :timetables do
               resources :courses
             end
           end

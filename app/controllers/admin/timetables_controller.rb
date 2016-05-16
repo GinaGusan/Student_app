@@ -1,39 +1,40 @@
-class Admin::SemestersController < AdminsController
+class Admin::TimetablesController < AdminsController
 
 	before_action :set_university, :set_faculty, :set_specialty, :set_group
 
-	def index
-		@semesters = @group.semesters
-	end
+	# def index
+	# 	@semesters = @group.semesters
+	# end
 
 	def show
-		@semester = @group.semesters.find(params[:id])
+		@timetable = @group.timetable
 	end
 
 	def new
-		@semester = @group.semesters.new
+		@timetable = Timetable.new
 	end
 
 	def create
-		@semester = @group.semesters.new semester_params
-		if @semester.save
+		puts "@@@@@@#{timetable_params}"
+		@timetable = Timetable.new timetable_params
+		if @timetable.save
 			redirect_to admin_university_faculty_specialty_group_path @university.id, @faculty.id, @specialty.id, @group.id
 		end
 	end
 
 	def edit
-		@semester = @group.semesters.find(params[:id])
+		@timetable = @group.timetable
 	end
 
 	def update
-		@semester = @group.semesters.find(params[:id])
-		if @semester.update semester_params
+		@timetable = @group.timetable
+		if @timetable.update timetable_params
 			redirect_to admin_university_faculty_specialty_group_path @university.id, @faculty.id, @specialty.id, @group.id
 		end
 	end
 
 	def destroy
-		@semester = @group.semesters.destroy(params[:id])
+		@timetable = @group.timetable
 		redirect_to admin_university_faculty_specialty_group_path @university.id, @faculty.id, @specialty.id, @group.id
 	end
 
@@ -54,7 +55,7 @@ class Admin::SemestersController < AdminsController
     	@group = Group.find(params[:group_id])
     end
 
-    def semester_params
-		params.require(:semester).permit(:group_id, :sem_number)
+    def timetable_params
+		params.require(:timetable).permit(:current_timetable).merge!(group_id: params[:group_id])
 	end
 end
