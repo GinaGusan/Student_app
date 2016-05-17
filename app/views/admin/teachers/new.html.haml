@@ -1,12 +1,40 @@
-%h1 New teacher
-= form_for [:admin, :university, @teacher] do |f|
-  = f.label 'Teacher name'
-  = f.text_field :name
-  = f.select :teacher_faculty, options_from_collection_for_select(Faculty.all, 'title', 'title')
-  = f.label 'Teacher department' 
-  = f.text_field :teacher_department
-  = f.label :email
-  = f.email_field :email, autofocus: true
-  = f.label :password
-  = f.text_field :password, autocomplete: "off"
-  = f.submit 'Submit'
+.container
+  .row
+    .col-md-8.col-md-offset-2
+      .panel.panel-default
+        .panel-heading
+          .icon-edit.icon-large
+          Add new teacher
+        .panel-body
+          .form-horizontal
+            %fieldset
+              %legend
+                Default inputs
+              = form_for [:admin, :university, @teacher] do |f|
+                .form-group
+                  .col-lg-2.control-label
+                    Name
+                  .col-lg-10
+                    = f.text_field :name, {:class => "form-control"}
+                .form-group
+                  .col-lg-2.control-label
+                    Faculty
+                  .col-lg-10
+                    = f.select :teacher_faculty, options_from_collection_for_select(Faculty.all, 'title', 'title')
+                .form-group
+                  .col-lg-2.control-label
+                    Department
+                  .col-lg-10
+                    = f.text_field :teacher_department, {:class => "form-control"}
+                .form-group
+                  .col-lg-2.control-label
+                    Email
+                  .col-lg-10
+                    = f.email_field :email, {:class => "form-control"}
+                .form-group
+                  .col-lg-2.control-label
+                    Password
+                  .col-lg-10
+                    = f.text_field :password, {:class => "form-control"}
+                .form-actions
+                  = f.submit :class => "btn btn-default"

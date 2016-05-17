@@ -1,27 +1,47 @@
-%h1
-	= @timetable.current_timetable
-=link_to 'Add course', {:controller => :courses, :action => :new, :timetable_id => @timetable.id, :group_id => @group.id, :specialty_id => @specialty.id, :faculty_id => @faculty.id, :university_id => @university.id}, :method => :get
-%hr
-- @timetable.courses.sort{|l,r| l.day <=> r.day}.group_by{|c| c.day}.each do |day, courses|
-	%h4 
-		= Course.working_days.keys[day]
-	- courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
-		%b
-			= c.title
-		%br
-		= Course.course_starting_hours.keys[c.start_time]
-		%br
-		= Course.course_ending_hours.keys[c.end_time]
-		%br
-		= c.room_num
-		%br
-		= c.type_lesson
-		%br
-		= c.teacher_name
-		%br
-		= link_to 'Delete course', {:controller => :courses, :action => :destroy, :id => c.id, :timetable_id => c.timetable.id, :group_id => c.timetable.group.id, :specialty_id => c.timetable.group.specialty.id, :faculty_id => c.timetable.group.specialty.faculty.id, :university_id => c.timetable.group.specialty.faculty.university.id}, :method => :delete
-		%br
-		= link_to 'Edit course', {:controller => :courses, :action => :edit, :id => c.id, :timetable_id => c.timetable.id, :group_id => c.timetable.group.id, :specialty_id => c.timetable.group.specialty.id, :faculty_id => c.timetable.group.specialty.faculty.id, :university_id => c.timetable.group.specialty.faculty.university.id}, :method => :get
-		%br
-		%br
+.container
+	.row
+		.col-md-11
+			%h1
+				= @timetable.current_timetable
+			= link_to 'Add course', {:controller => :courses, :action => :new, :timetable_id => @timetable.id, :group_id => @group.id, :specialty_id => @specialty.id, :faculty_id => @faculty.id, :university_id => @university.id}, :method => :get
+			%hr
+			- @timetable.courses.sort{|l,r| l.day <=> r.day}.group_by{|c| c.day}.each do |day, courses|
+				.panel.panel-default.grid
+					.panel-heading
+						= Course.working_days.keys[day]		
+					%table.table.table-condensed
+						%thead
+							%tr
+								%th
+									Course title
+								%th
+									Starting hour
+								%th
+									Ending hour
+								%th
+									Room number
+								%th
+									Lesson type
+								%th
+									Teacher's name
+						%tbody
+							- courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
+								%tr
+									%td
+										= c.title
+									%td
+										= Course.course_starting_hours.keys[c.start_time]
+									%td
+										= Course.course_ending_hours.keys[c.end_time]
+									%td
+										= c.room_num
+									%td	
+										= c.type_lesson
+									%td	
+										= c.teacher_name
+									%td	
+										= link_to 'Delete course', {:controller => :courses, :action => :destroy, :id => c.id, :timetable_id => c.timetable.id, :group_id => c.timetable.group.id, :specialty_id => c.timetable.group.specialty.id, :faculty_id => c.timetable.group.specialty.faculty.id, :university_id => c.timetable.group.specialty.faculty.university.id}, :method => :delete
+										
+										= link_to 'Edit course', {:controller => :courses, :action => :edit, :id => c.id, :timetable_id => c.timetable.id, :group_id => c.timetable.group.id, :specialty_id => c.timetable.group.specialty.id, :faculty_id => c.timetable.group.specialty.faculty.id, :university_id => c.timetable.group.specialty.faculty.university.id}, :method => :get
+							
 

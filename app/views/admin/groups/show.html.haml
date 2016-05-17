@@ -1,14 +1,16 @@
 %h1
 	= @group.title
-= link_to 'Add timetable', {:controller => :timetables, :action => :new, :group_id => @group.id, :specialty_id => @specialty.id, :faculty_id => @faculty.id, :university_id => @university.id}, :method => :get, :remote => true
+- if not @group.timetable
+	= link_to 'Add timetable', {:controller => :timetables, :action => :new, :group_id => @group.id, :specialty_id => @specialty.id, :faculty_id => @faculty.id, :university_id => @university.id}, :method => :get, :remote => true
 #new-timetable
 %hr
-%b
-= link_to @group.timetable.current_timetable, {:controller => :timetables, :action => :show, :id => @group.timetable.id, :group_id => @group.timetable.group.id, :specialty_id => @group.timetable.group.specialty.id, :faculty_id => @group.timetable.group.specialty.faculty.id, :university_id => @group.timetable.group.specialty.faculty.university.id}, :method =>:get
-%br
-= link_to 'Delete timetable', {:controller => :timetables, :action => :destroy, :id => @group.timetable.id, :group_id => @group.timetable.group.id, :specialty_id => @group.timetable.group.specialty.id, :faculty_id => @group.timetable.group.specialty.faculty.id, :university_id => @group.timetable.group.specialty.faculty.university.id}, :method => :delete
-%br
-/ = link_to 'Edit timetable', {:controller => :timetables, :action => :edit, :id => @group.timetable.id, :group_id => @group.timetable.group.id, :specialty_id => @group.timetable.group.specialty.id, :faculty_id => @group.timetable.group.specialty.faculty.id, :university_id => @group.timetable.group.specialty.faculty.university.id}, :method => :get 
-%hr
+- if @group.timetable 
+	%br
+	= link_to @group.timetable.current_timetable, {:controller => :timetables, :action => :show, :id => @group.timetable.id, :group_id => @group.timetable.group.id, :specialty_id => @group.timetable.group.specialty.id, :faculty_id => @group.timetable.group.specialty.faculty.id, :university_id => @group.timetable.group.specialty.faculty.university.id}, :method =>:get
+	%br
+	= link_to 'Delete timetable', {:controller => :timetables, :action => :destroy, :id => @group.timetable.id, :group_id => @group.timetable.group.id, :specialty_id => @group.timetable.group.specialty.id, :faculty_id => @group.timetable.group.specialty.faculty.id, :university_id => @group.timetable.group.specialty.faculty.university.id}, :method => :Delete
+	%br
+	= link_to 'Edit timetable', {:controller => :timetables, :action => :edit, :id => @group.timetable.id, :group_id => @group.timetable.group.id, :specialty_id => @group.timetable.group.specialty.id, :faculty_id => @group.timetable.group.specialty.faculty.id, :university_id => @group.timetable.group.specialty.faculty.university.id}, :method => :get, :remote => true 
+	.edit-timetable{:id => "edit-timetable-#{@group.timetable.id}"} 
 	
 		

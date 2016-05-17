@@ -1,5 +1,5 @@
 = form_for [:admin, @university, @faculty, @specialty, @group, @timetable] do |s|
 	= hidden_field_tag :group_id, @group.id
-	= s.label "Add timetable"
+	= s.label "Edit timetable"
 	= s.select :current_timetable, options_for_select: ["Current timetable for #{@group.title}"]
-	= s.submit 'Create'
+	= s.submit

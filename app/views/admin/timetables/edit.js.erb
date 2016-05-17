@@ -1,0 +1,3 @@
+var editTimetable = $('#edit-timetable-'+'<%= params[:id] %>')
+console.log('<%= params[:id] %>')
+editTimetable.html('<%=j render partial: "edit" %>')
