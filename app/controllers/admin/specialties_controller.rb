@@ -1,13 +1,13 @@
 class Admin::SpecialtiesController < AdminsController
 
-	before_action :set_university, :set_faculty
+	before_action :set_university, :set_faculty, except: [:index, :show]
 
 	def index
-		@specialties = @faculty.specialties
+		@specialties = Specialty.all.group_by{|s| s.faculty_id}
 	end
 
 	def show
-		@specialty = @faculty.specialties.find(params[:id])
+		@specialty = Specialty.find(params[:id])
 	end
 
 	def new
@@ -18,7 +18,7 @@ class Admin::SpecialtiesController < AdminsController
 	def create
 		@specialty = @faculty.specialties.new(specialty_params)
 		if @specialty.save
-			redirect_to admin_university_faculty_path @university.id, @faculty.id
+			redirect_to admin_faculty_path(@faculty.id)
 		end
 	end
 
@@ -30,7 +30,7 @@ class Admin::SpecialtiesController < AdminsController
 	def update
 		@specialty = @faculty.specialties.find(params[:id])
 		if @specialty.update specialty_params
-			redirect_to admin_university_faculty_path @university.id, @faculty.id
+			redirect_to admin_faculty_path(@faculty.id)
 		else
 			render :edit
 		end
@@ -38,7 +38,7 @@ class Admin::SpecialtiesController < AdminsController
 
 	def destroy 
 		@specialty = @faculty.specialties.destroy(params[:id])
-		redirect_to admin_university_faculty_path @university.id, @faculty.id
+		redirect_to admin_faculty_path(@faculty.id)
 	end
 
 	private

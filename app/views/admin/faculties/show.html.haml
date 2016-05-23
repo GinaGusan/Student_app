@@ -1,16 +1,31 @@
-%h1
-	= @faculty.title
-%h2 All specialties
-
-= link_to 'Add specialty', {:controller => :specialties, :action => :new, :faculty_id => @faculty.id, :university_id => @faculty.university.id}, :method => :get, :remote => true
-%br
-#new-specialty
-- @faculty.specialties.each do |s|
-	%b
-		= link_to s.title, {:controller => :specialties, :action => :show, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}
-	%br
-	= link_to 'Delete specialty', {:controller => :specialties, :action => :destroy, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}, :method => :delete
-	%br
-	= link_to 'Edit specialty', {:controller => :specialties, :action => :edit, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}, :method => :get, :remote =>true
-	.edit-specialty{:id => "edit-specialty-#{s.id}"}
-	%hr
+.container
+  .col-md-9.col-md-offset-1
+    .row
+      %h1.text-center.heading-font
+        = @faculty.title
+      %h2.text-left.heading-font
+        All specialties
+      = link_to({:controller => :specialties, :action => :new, :faculty_id => @faculty.id, :university_id => @faculty.university.id}, :method => :get, :remote => true, :class => "icon-left add-button") do
+        %span
+          Add specialty
+      #new-specialty
+      %hr
+    .row
+      - @faculty.specialties.each do |s|
+        %ul.action-block
+          .col-md-6
+            %li
+              %b
+                = link_to s.title, {:controller => :specialties, :action => :show, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}
+          .col-md-3
+            %li
+              = link_to({:controller => :specialties, :action => :edit, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}, :method => :get, :remote =>true, :class => "icon-left edit-button") do
+                %span
+                  Edit specialty
+              .edit-specialty{:id => "edit-specialty-#{s.id}"}
+          .col-md-3
+            %li
+              = link_to({:controller => :specialties, :action => :destroy, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}, :method => :delete, :class => "icon-left delete-button") do
+                %span
+                  Delete specialty
+        %hr

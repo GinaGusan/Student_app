@@ -1,0 +1,30 @@
+.icon-log{
+	font-family: $font_logo !important;
+	font-size: 40px;
+	text-align: center;
+
+    
+
+	&:before{
+		content: "";
+		width: 64px;
+		height: 64px;
+		display: block !important;
+		background-image: asset-url('apple-and-books.png');
+		background-repeat: no-repeat;
+		margin-top: 20px;
+		margin-left: 95px;
+		
+	}
+		
+}
+
+.checkbox{
+	label{
+		padding-left: 0px;
+	}
+}
+
+.password-class{
+	margin-top: 7px;
+}

@@ -1,8 +1,19 @@
-%h1 List of all available specialties
-
-= link_to 'Add new specialty', new_university_faculty_specialty_path
-%br
-- @specialties.each do |s|
-	%b
-		= s.title
-	%hr
+.container
+  .rows-action-block
+    .col-md-9.col-md-offset-1
+      %h1.text-center.heading-font
+        List of all available specialties
+      - @specialties.each do |f, specialties|
+        %h3.text-center.heading-font
+          = specialties.first.faculty.title
+        -specialties.sort{|l,r| r.updated_at <=> l.updated_at}.each do |s|
+          %ul.action-block
+            .col-md-6
+              %li
+                %b
+                  = link_to s.title, {:controller => :specialties, :action => :show, :university_id => s.faculty.university.id, :faculty_id => s.faculty.id, :id => s.id}
+            .col-md-5.col-md-offet-1
+              %li
+                %i
+                  = s.updated_at.strftime("last modified at: %d-%m-%Y, %H:%M:%S")
+        %hr

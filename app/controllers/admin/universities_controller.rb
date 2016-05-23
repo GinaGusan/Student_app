@@ -11,7 +11,7 @@ class Admin::UniversitiesController < AdminsController
 	def create
 		@university = University.new(university_params)
     	if @university.save
-      		redirect_to admin_universities_path @university
+      		redirect_to admin_universities_path(@university)
     	end
 	end
 

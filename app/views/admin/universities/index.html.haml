@@ -1,11 +1,28 @@
-%h1 All universities
-
-- @universities.each do |u|
-	%b
-		= link_to u.title, {:controller => :universities, :action => :show, :id => u.id, :method => :get}
-		%br
-		=link_to 'Delete university', {:controller => :universities, :action => :destroy, :id => u.id}, :method => :delete
-		%br
-		= link_to 'Edit university', {:controller => :universities, :action => :edit, :id => u.id}, :method => :get, :remote => true
-		.edit-university{:id => "edit-university-#{u.id}"}
-	%hr
+.container
+  .col-md-9.col-md-offset-1
+    .row
+      %h1.text-center.heading-font
+        All universities
+      = link_to(new_admin_university_path, :method =>:get, :remote => true, :class => "icon-left add-button") do
+        %span
+          Add university
+        #new-university
+      %hr
+      - @universities.order(:title).each do |u|
+        %ul.action-block
+          .col-md-6
+            %li
+              %b
+                = link_to u.title, {:controller => :universities, :action => :show, :id => u.id, :method => :get}
+          .col-md-3
+            %li
+              = link_to({:controller => :universities, :action => :edit, :id => u.id}, :class =>"icon-left edit-button", :method => :get, :remote => true) do
+                %span
+                  Edit university
+            .edit-university{:id => "edit-university-#{u.id}"}
+          .col-md-3
+            %li
+              = link_to({:controller => :universities, :action => :destroy, :id => u.id}, :class =>"icon-left delete-button", :method => :delete) do
+                %span
+                  Delete university
+        %hr

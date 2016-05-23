@@ -1,7 +1,19 @@
-%h1 List of all available faculties
-= link_to 'Add new faculty', new_university_faculty_path
-%hr
-- @faculties.each do |u|
-	%b
-		= link_to u.title, { :controller => :faculties, :action => :show, :id => u.id, :method => :get}
-	%hr
+.container
+  .rows-action-block
+    .col-md-9.col-md-offset-1
+      %h1.text-center.heading-font
+        List of all available faculties
+      - @faculties.each do |u, faculties|
+        %h3.text-center.heading-font
+          = faculties.first.university.title
+        -faculties.sort{|l,r| r.updated_at <=> l.updated_at}.each do |f|
+          %ul.action-block
+            .col-md-6
+              %li
+                %b
+                  = link_to f.title, {:controller => :faculties, :action => :show, :id => f.id, :university_id => f.university.id}, :method => :get
+            .col-md-5.col-md-offset-1
+              %li
+                %i
+                  = f.updated_at.strftime("last modified at: %d-%m-%Y, %H:%M:%S")
+        %hr

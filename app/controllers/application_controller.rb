@@ -28,4 +28,14 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up){|u| u.permit(:email, :password, :password_confirmation, :group_id)}
   end
+
+  layout :layout_by_resource
+
+  protected
+
+  def layout_by_resource
+    if devise_controller? && resource.class == Admin
+      "admins"
+    end 
+  end
 end

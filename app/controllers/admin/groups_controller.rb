@@ -1,13 +1,13 @@
 class Admin::GroupsController < AdminsController
 
-	before_action :authenticate_admin!, :set_university, :set_faculty, :set_specialty
+	before_action :set_university, :set_faculty, :set_specialty, except: [:index, :show]
 
 	def index
-		@groups = @specialty.groups
+		@groups = Group.all.group_by{|g| g.specialty_id}
 	end
 
 	def show
-		@group = @specialty.groups.find(params[:id])
+		@group = Group.find(params[:id])
 	end
 
 	def new
@@ -18,7 +18,7 @@ class Admin::GroupsController < AdminsController
 	def create
 		@group = @specialty.groups.new group_params
 		if @group.save
-			redirect_to admin_university_faculty_specialty_path @university.id, @faculty.id, @specialty.id
+			redirect_to admin_specialty_path(@specialty.id)
 		end
 	end
 
@@ -30,13 +30,13 @@ class Admin::GroupsController < AdminsController
 	def update
 		@group = @specialty.groups.find(params[:id])
 		if @group.update group_params
-			redirect_to admin_university_faculty_specialty_path @university.id, @faculty.id, @specialty.id
+			redirect_to admin_specialty_path(@specialty.id)
 		end
 	end
 
 	def destroy
 		@group = @specialty.groups.destroy(params[:id])
-		redirect_to admin_university_faculty_specialty_path @university.id, @faculty.id, @specialty.id
+		redirect_to admin_specialty_path(@specialty.id)
 	end
 
 	private

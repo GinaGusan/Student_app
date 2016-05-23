@@ -1,13 +1,13 @@
 class Admin::TeachersController < AdminsController
 
-	before_action :set_university
+	before_action :set_university, except: [:index, :show]
 
 	def index
-		@teachers = @university.teachers
+		@teachers = Teacher.all
 	end
 
 	def show
-		@teacher = @university.teachers.find(params[:id])
+		@teacher = Teacher.find(params[:id])
 	end
 
 	def new
@@ -17,7 +17,7 @@ class Admin::TeachersController < AdminsController
 	def create
 		@teacher = @university.teachers.new(teacher_params)
 		if @teacher.save
-			redirect_to admin_university_path @university.id
+			redirect_to admin_university_path(@university.id)
 		else
 			render :new
 		end
@@ -30,13 +30,13 @@ class Admin::TeachersController < AdminsController
 	def update
 		@teacher = @university.teachers.find(params[:id])
 		if @teacher.update teacher_params
-			redirect_to admin_university_path @university.id
+			redirect_to admin_university_path(@university.id)
 		end
 	end
 
 	def destroy
 		@teacher = @university.teachers.destroy(params[:id])
-		redirect_to admin_university_path @university.id
+		redirect_to admin_university_path(@university.id)
 	end
 
 	private

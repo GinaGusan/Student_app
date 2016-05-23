@@ -20,27 +20,27 @@
 									.col-lg-2.control-label
 										Starting time
 									.col-lg-10
-										= c.select :start_time, options_for_select(Course.course_starting_hours)
+										= c.select :start_time, options_for_select(Course.course_starting_hours), {}, {:class => "form-control"}
 								.form-group
 									.col-lg-2.control-label
 										Room number
 									.col-lg-10
-										= c.select :room_num, options_for_select: [100,101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+										= c.select(:room_num, [100,101, 102, 103, 104, 105, 106, 107, 108, 109, 110], {}, {:class => "form-control"})
 								.form-group
 									.col-lg-2.control-label
 										Lesson type
 									.col-lg-10
-										= c.select :type_lesson, options_for_select: ['assignment', 'exam', 'lab', 'class']
+										= c.select(:type_lesson, ['assignment', 'exam', 'lab', 'class'], {}, {:class => 'form-control'})
 								.form-group
 									.col-lg-2.control-label
 										Teacher name
 									.col-lg-10
-										= c.select :teacher_name, options_from_collection_for_select(Teacher.all, 'name', 'name')
+										= c.select :teacher_name, options_from_collection_for_select(Teacher.all, 'name', 'name'), {}, {:class => 'form-control'}
 								.form-group
 									.col-lg-2.control-label
 										Day
 									.col-lg-10
-										= c.select :day, options_for_select(Course.working_days)
+										= c.select :day, options_for_select(Course.working_days), {}, {:class => "form-control"}
 								.form-actions
 									= c.submit :class => "btn btn-default"
 

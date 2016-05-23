@@ -1,16 +1,31 @@
-%h1 
-	= @specialty.title
-%h2 All groups
-
-= link_to 'Add group', {:controller => :groups, :action => :new, :specialty_id => @specialty.id, :faculty_id => @specialty.faculty.id, :university_id => @specialty.faculty.university.id}, :method => :get, :remote => true
-#new-group
-%hr
-- @specialty.groups.each do |g|
-	%b
-		= link_to g.title, {:controller => :groups, :action => :show, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :method => :get
-	%br
-	= link_to 'Delete group', {:controller => :groups, :action => :destroy, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :method => :delete
-	%br
-	= link_to 'Edit group', {:controller => :groups, :action => :edit, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :method => :get, :remote => true
-	.edit-group{:id => "edit-group-#{g.id}"}
-	%hr
+.container
+  .col-md-9.col-md-offset-1
+    .row
+      %h1.text-center.heading-font
+        = @specialty.title
+      %h2.text-left.heading-font
+        All groups
+      = link_to({:controller => :groups, :action => :new, :specialty_id => @specialty.id, :faculty_id => @specialty.faculty.id, :university_id => @specialty.faculty.university.id}, :method => :get, :remote => true, :class => "icon-left add-button") do
+        %span
+          Add group
+      #new-group
+      %hr
+      - @specialty.groups.each do |g|
+        %ul.action-block
+          .col-md-6
+            %li
+              %b
+                = link_to g.title, {:controller => :groups, :action => :show, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :method => :get
+          .col-md-3
+            %li
+              = link_to({:controller => :groups, :action => :edit, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :method => :get, :remote => true, :class => "icon-left edit-button") do
+                %span
+                  Edit group
+            .edit-group{:id => "edit-group-#{g.id}"}
+          .col-md-3
+            %li
+              = link_to({:controller => :groups, :action => :destroy, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :method => :delete, :class => "icon-left delete-button") do
+                %span
+                  Delete group
+  
+        %hr

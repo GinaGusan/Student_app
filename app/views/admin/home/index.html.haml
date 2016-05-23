@@ -1,11 +1,31 @@
-%h1 Hi admin's home page
+.container
+  .row
+    .col-md-9.col-md-offset-1
+      %h2.text-center.heading-font
+        Check out latest activities
+      .panel.panel-default.grid
+        %table.table.table-condensed
+          %thead
+            %tr
+              %th
+                Student's email
+              %th{:align => "center"}
+                Nr. of sessions
+              %th
+                Last sign in
+          %tbody
+            - @scholars.sort{|l,r| l.last_sign_in_at <=> r.last_sign_in_at}.each do |s|
+              %tr
+                %td
+                  = s.email
+                %td{:align => "center"}
+                  = s.sign_in_count
+                %td
+                  %i
+                    = s.last_sign_in_at.strftime("last signed in at: %d-%m-%Y, %H:%M:%S")
 
-= link_to 'New university', new_admin_university_path, :method =>:get, :remote => true
-%br
-#new-university
-%br
-= link_to 'Sign in', admin_session_path, :method => :post
-%br
-= link_to 'Sign out', destroy_admin_session_path, :method => :delete
-%br
-= link_to 'All universities', admin_universities_path
+                
+
+
+        
+

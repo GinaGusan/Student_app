@@ -1,1 +1,6 @@
-@import "hierapolis"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'base/main';
+@import 'helpers/main';
+@import 'layout/main';
+@import 'pages/main';

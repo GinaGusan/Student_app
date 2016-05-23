@@ -1,8 +1,19 @@
-%h1 List of all available groups
-
-= link_to 'Add new group', new_university_faculty_specialty_group_path
-%br
-- @groups.each do |g|
-	%b
-		= g.title
-	%hr
+.container
+  .rows-action-block
+    .col-md-9.col-md-offset-1
+      %h1.text-center.heading-font
+        List of all available groups
+      - @groups.each do |s, groups|
+        %h3.text-center.heading-font
+          = groups.first.specialty.title
+        -groups.sort{|l,r| r.updated_at <=> l.updated_at}.each do |g|
+          %ul.action-block
+            .col-md-6
+              %li
+                %b
+                  = link_to g.title, {:controller => :groups, :action => :show, :id => g.id, :specialty_id => g.specialty.id, :faculty_id => g.specialty.faculty.id, :university_id => g.specialty.faculty.university.id}, :method => :get
+            .col-md-5.col-md-offet-1
+              %li
+                %i
+                  = g.updated_at.strftime("last modified at: %d-%m-%Y, %H:%M:%S")
+        %hr

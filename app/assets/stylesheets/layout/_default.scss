@@ -1,0 +1,139 @@
+body{
+	font-family: $font_lato;
+	font-size: 16px;
+	// line-height: 19px;
+	color: $general_font_color;
+}
+
+a{
+	text-decoration: none !important;
+}
+
+#wrapper{
+	border-radius: 10px;
+}
+
+.heading-font{
+	margin-top: 30px;
+	margin-bottom: 60px;
+	color: $logo_font_color;
+}
+
+.action-block{
+	@include clearfix;
+
+	li{
+		display: inline-block;
+		// margin-right: 10px;
+		font-family: $font_lato;
+		font-size: 16px;
+		margin-bottom: 7px;
+
+		&:last-child{
+			margin-right: 0;
+		}
+	}
+
+	a{
+		display: inline-block;
+		color: $general_font_color;
+	}
+}
+
+.icon-left{
+
+	&:before{
+			content: "";
+			width: 18px;
+			height: 18px;
+			float: left;
+			display: inline-block;
+	}
+
+	&.delete-button{
+		&:before{
+			background-image: asset-url('delete.png');
+		}
+	}
+
+	&.edit-button{
+		&:before{
+			background-image: asset-url('edit.png');
+		}
+	}
+
+	&.add-button{
+		&:before{
+			background-image: asset-url('add.png');
+		}
+	}
+
+	&.visit-button{
+		&:before{
+			background-image: asset-url('visit.png');
+		}
+	}
+
+	span{
+		font-family: $font_lato;
+		font-size: 16px;
+		color: $general_font_color;
+		margin-left: 2px;
+
+	}
+}
+
+.input-form-edit{
+	margin-bottom: 15px; 
+	height: 40px;
+	font-size: 16px;
+	font-family: $font_lato;
+}
+
+.rows-action-block{
+	margin-top: 30px;
+}
+
+.btn{
+	&.btn-default{
+		font-family: $font_lato;
+
+	}
+	&.add-btn-default{
+		// margin-top: 15px;
+	}
+
+	&.select-btn-default{
+		margin-top: 15px;
+	}
+}
+ #new-faculty{
+ 	margin-top: 7px;
+ }
+
+ #new-university{
+ 	margin-top: 7px;
+ }
+
+ .edit-timetable{
+ 	margin-top: 7px;
+ 	margin-bottom: 15px;
+	font-size: 16px;
+	font-family: $font_lato;
+ }
+
+.course-heading-font{
+	color: $logo_font_color !important;
+	font-size: 24px;
+}
+
+.form-control{
+	&.form-for-timetable{
+		margin-top: 7px;
+	}
+}
+
+// .font-table-block{
+// 	padding-left: 10px;
+// }
+

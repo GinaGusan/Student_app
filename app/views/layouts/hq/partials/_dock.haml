@@ -2,33 +2,40 @@
 
 %ul#dock
   %li.launcher
-    %i.icon-dashboard
-    =link_to  t('dock.dashboard'), root_path
+    %i.icon-building
+    = link_to 'Universities', admin_universities_path
   %li.launcher
-    %i.icon-file-text-alt
-    =link_to 'Forms', '/hq/dashboard/form.html'
+    %i.icon-user
+    = link_to 'Teachers', admin_teachers_path
   %li.launcher
-    %i.icon-table
-    =link_to 'Tables', '/hq/dashboard/tables.html'
-  %li.launcher.dropdown.hover
-    %i.icon-flag
-    %a{href: '#'} Reports
-    %ul.dropdown-menu
-      %li.dropdown-header Launcher description
-      %li
-        %a{:href => '#'} Action
-      %li
-        %a{:href => '#'} Another action
-      %li
-        %a{:href => '#'} Something else here
+    %i.icon-sitemap
+    = link_to 'Faculties', admin_faculties_path
   %li.launcher
-    %i.icon-bookmark
-    %a{href: '#'} Bookmarks
+    %i.icon-th
+    = link_to 'Specialties', admin_specialties_path
   %li.launcher
-    %i.icon-cloud
-    %a{href: '#'} Backup
-  %li.launcher
-    %i.icon-bug
-    %a{href: '#'} Feedback
+    %i.icon-group
+    = link_to 'Groups', admin_groups_path
+  / %li.launcher
+  /   %i.icon-group
+  /   = link_to 'Courses', admin_courses_path
+  / %li.launcher.dropdown.hover
+  /   %i.icon-flag
+  /   %a{href: '#'} Reports
+  /   %ul.dropdown-menu
+  /     %li.dropdown-header Launcher description
+  /     %li
+  /       %a{:href => '#'} Action
+  /     %li
+  /       %a{:href => '#'} Another action
+  /     %li
+  /       %a{:href => '#'} Something else here
+  
+  / %li.launcher
+  /   %i.icon-cloud
+  /   %a{href: '#'} Backup
+  / %li.launcher
+  /   %i.icon-bug
+  /   %a{href: '#'} Feedback
 
 #beaker{data: {toggle: 'tooltip'}, title: 'Made by lab2023'}

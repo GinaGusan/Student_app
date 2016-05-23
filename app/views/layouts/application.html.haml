@@ -23,38 +23,39 @@
     = csrf_meta_tags
 
     / Stylesheets (Don't change include order)
-    = stylesheet_link_tag 'hq/application',
+    = stylesheet_link_tag 'application',
                           '//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css',
-                          media: 'all', 'data-turbolinks-track' => true
+                          media: 'all'
 
     / Javascripts
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js',
-                              'hq/application', 'data-turbolinks-track' => true
+                              'application'
     = yield :head
 
   %body.main
+    = yield
 
-    / Navbar
-    = render partial: 'layouts/hq/partials/navbar'
+    / / Navbar
+    / = render partial: 'layouts/hq/partials/navbar'
 
-    #wrapper
+    / #wrapper
 
-      / Sidebar
-      %section#sidebar
-        = render partial: 'layouts/hq/partials/dock'
+    /   / Sidebar
+    /   %section#sidebar
+    /     = render partial: 'layouts/hq/partials/dock'
 
-      / Tools
-      %section#tools
-        / = render partial: 'layouts/hq/partials/breadcrumb'
-        = render partial: 'layouts/hq/partials/toolbar'
+    /   / Tools
+    /   %section#tools
+    /     / = render partial: 'layouts/hq/partials/breadcrumb'
+    /     = render partial: 'layouts/hq/partials/toolbar'
 
-      / Content
-      #content
-        = render partial: 'layouts/partials/messages'
-        = yield
+    /   / Content
+    /   #content
+    /     = render partial: 'layouts/partials/messages'
+    /     = yield
 
-    / Footer
-    = render partial: 'layouts/hq/partials/footer'
+    / / Footer
+    / = render partial: 'layouts/hq/partials/footer'
 
-    / Google Analytics
-    = render partial: 'layouts/partials/trackers'
+    / / Google Analytics
+    / = render partial: 'layouts/partials/trackers'

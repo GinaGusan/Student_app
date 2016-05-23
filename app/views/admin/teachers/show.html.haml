@@ -1,8 +1,16 @@
-%h1
-	= @teacher.name
-	%br
-	= @teacher.email
-	%br
-	= @teacher.teacher_faculty
-	%br
-	= @teacher.teacher_department
+.container
+  .col-md-9.col-md-offset-1
+    %h1.text-center.heading-font
+      = @teacher.name
+    .col-md-6.text-right
+      Email:
+      %br
+      Faculty:
+      %br
+      Department:
+    .col-md-6.text-left
+      = @teacher.email
+      %br
+      = @teacher.teacher_faculty
+      %br
+      = @teacher.teacher_department

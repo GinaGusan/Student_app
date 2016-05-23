@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
 	belongs_to :timetable
-	has_one :group, through: :timetable
+	has_one :group, through: :timetable, dependent: :destroy
 
 	enum working_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 	enum course_starting_hours: ['8:00', '9:35', '11:10', '12:40', '14:10', '15:40', '17:10', '18:40']

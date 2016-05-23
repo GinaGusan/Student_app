@@ -1,8 +1,17 @@
-%h1 List of all existing teachers
-
-= link_to 'Add new teacher', new_university_teacher_path
-%br
-- @teachers.each do |t|
-	%b
-		= t.name
-	%hr
+.container
+  .col-md-6.col-md-offset-2
+    .rows-action-block
+      %h2.text-center.heading-font
+        All teachers
+      - @teachers.order(:name).each do |t|
+        %ul.action-block
+          .col-md-6
+            .li
+              %b
+                =t.name
+          .col-md-5.col-md-offset-1
+            .li
+              = link_to({:controller => :teachers, :action => :show, :id => t.id}, :method => :get, :class => 'icon-left visit-button') do
+                %span
+                  Visit profile
+        %hr

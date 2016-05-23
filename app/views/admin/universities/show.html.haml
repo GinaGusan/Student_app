@@ -1,27 +1,55 @@
-%h1 
-	= @university.title
-%h1 All faculties
-= link_to 'Add faculty', {:controller => :faculties, :action => :new, :university_id => @university.id}, :method => :get, :remote => true
-#new-faculty
-%hr
-- @university.faculties.each do |f|
-	%b
-		= link_to f.title, {:controller => :faculties, :action => :show, :id => f.id, :university_id => f.university.id}, :method => :get
-	%br
-	= link_to 'Delete faculty', admin_university_faculty_path(:id => f.id, :university_id => f.university.id), :method => :delete
-	%br
-	= link_to 'Edit faculty', {:controller => :faculties, :action => :edit, :id => f.id, :university_id => f.university.id}, :remote => true
-	.edit-faculty{:id => "edit-faculty-#{f.id}"}
-	%hr
-%h2 All teachers
-= link_to 'Add teacher', {:controller => :teachers, :action => :new, :university_id => @university.id}, :method => :get
-%br
-- @university.teachers.each do |t|
-	%b
-		= link_to t.name, {:controller => :teachers, :action => :show, :university_id => t.university.id, :id => t.id}
-	%br
-	= link_to 'Delete teacher', {:controller => :teachers, :action => :destroy, :university_id => t.university.id, :id => t.id}, :method => :delete
-	%br
-	= link_to 'Edit teacher', {:controller => :teachers, :action => :edit, :university_id => t.university.id, :id => t.id}, :method => :get
-	%hr
+.container
+  .col-md-9.col-md-offset-1
+    .row
+      %h1.text-center.heading-font
+        = @university.title
+      %h2.text-left.heading-font
+        All faculties
+      = link_to({:controller => :faculties, :action => :new, :university_id => @university.id}, :method => :get, :remote => true, :class => "icon-left add-button") do
+        %span
+          Add faculty
+      #new-faculty
+      %hr
+      - @university.faculties.each do |f|
+        %ul.action-block
+          .col-md-6
+            %li
+              %b
+                = link_to f.title, {:controller => :faculties, :action => :show, :id => f.id, :university_id => f.university.id}, :method => :get
+          .col-md-3
+            %li
+              = link_to({:controller => :faculties, :action => :edit, :id => f.id, :university_id => f.university.id}, :remote => true, :class => "icon-left edit-button") do
+                %span
+                  Edit faculty
+            .edit-faculty{:id => "edit-faculty-#{f.id}"}
+          .col-md-3
+            %li
+              = link_to(admin_university_faculty_path(:id => f.id, :university_id => f.university.id), :method => :delete, :class => "icon-left delete-button") do
+                %span
+                  Delete faculty
+        %hr
+    .row.rows-action-block
+      %h2.text-left.heading-font
+        All teachers
+      = link_to({:controller => :teachers, :action => :new, :university_id => @university.id}, :method => :get, :class =>"icon-left add-button") do
+        %span
+          Add teacher
+      %hr
+      - @university.teachers.each do |t|
+        %ul.action-block
+          .col-md-6
+            .li
+              %b
+                = link_to t.name, {:controller => :teachers, :action => :show, :university_id => t.university.id, :id => t.id}, :method => :get
+          .col-md-3
+            %li
+              = link_to({:controller => :teachers, :action => :edit, :university_id => t.university.id, :id => t.id}, :method => :get, :class => "icon-left edit-button") do
+                %span
+                  Edit teacher
+          .col-md-3
+            %li
+              = link_to({:controller => :teachers, :action => :destroy, :university_id => t.university.id, :id => t.id}, :method => :delete, :class => "icon-left delete-button") do
+                %span
+                  Delete teacher
+        %hr
 

@@ -5,11 +5,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'home#index'
+    resources :teachers, only: [:index, :show]
+    resources :faculties, only: [:index, :show]
+    resources :specialties, only: [:index, :show]
+    resources :groups, only: [:index, :show]
     resources :universities do
-      resources :teachers
-      resources :faculties do
-        resources :specialties do
-          resources :groups do
+      resources :teachers, except: [:index, :show]
+      resources :faculties, except: [:index, :show] do
+        resources :specialties, except: [:index, :show] do
+          resources :groups, except: [:index, :show] do
             resources :timetables do
               resources :courses
             end

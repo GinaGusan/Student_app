@@ -1,13 +1,13 @@
 class Admin::FacultiesController < AdminsController
 
-  before_action :set_university
+  before_action :set_university, except: [:index, :show]
 
 	def index
-		@faculties = @university.faculties
+		@faculties = Faculty.all.group_by{|f| f.university_id}
 	end
 
 	def show
-		@faculty = @university.faculties.find(params[:id])
+		@faculty = Faculty.find(params[:id])
 	end
 
 	def edit
@@ -23,14 +23,14 @@ class Admin::FacultiesController < AdminsController
 	def create
 		@faculty = @university.faculties.new(faculty_params)
 		if @faculty.save
-			redirect_to admin_university_path @university.id
+			redirect_to admin_university_path(@university.id)
     	end
 	end
 
 	def update
 		@faculty = @university.faculties.find(params[:id])
 		if @faculty.update faculty_params
-			redirect_to admin_university_path @university.id
+			redirect_to admin_university_path(@university.id)
 		else
 			render :edit
 		end
@@ -38,7 +38,7 @@ class Admin::FacultiesController < AdminsController
 
 	def destroy
 		@faculty = @university.faculties.destroy(params[:id])
-		redirect_to admin_university_path @university.id
+		redirect_to admin_university_path(@university.id)
 	end
 
 	private

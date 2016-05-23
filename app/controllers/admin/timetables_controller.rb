@@ -19,7 +19,7 @@ class Admin::TimetablesController < AdminsController
 		puts "@@@@@@#{timetable_params}"
 		@timetable = Timetable.new timetable_params
 		if @timetable.save
-			redirect_to admin_university_faculty_specialty_group_path @university.id, @faculty.id, @specialty.id, @group.id
+			redirect_to admin_group_path(@group.id)
 		end
 	end
 
@@ -30,13 +30,13 @@ class Admin::TimetablesController < AdminsController
 	def update
 		@timetable = @group.timetable
 		if @timetable.update timetable_params
-			redirect_to admin_university_faculty_specialty_group_path @university.id, @faculty.id, @specialty.id, @group.id
+			redirect_to admin_group_path(@group.id)
 		end
 	end
 
 	def destroy
 		@timetable = @group.timetable
-		redirect_to admin_university_faculty_specialty_group_path @university.id, @faculty.id, @specialty.id, @group.id
+		redirect_to admin_group_path(@group.id)
 	end
 
 	private

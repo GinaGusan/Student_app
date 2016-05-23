@@ -1,5 +1,4 @@
 = form_for [:admin, @university, @faculty, @specialty, @group, @timetable] do |s|
 	= hidden_field_tag :group_id, @group.id
-	= s.label "Edit timetable"
-	= s.select :current_timetable, options_for_select: ["Current timetable for #{@group.title}"]
-	= s.submit
+	= s.select(:current_timetable, ["Current timetable for #{@group.title}"], {}, {:class => "form-control"})
+	= s.submit :class => "btn btn-default select-btn-default"

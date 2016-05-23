@@ -1,4 +1,3 @@
 = form_for [:admin, @university] do |f|
-	= f.label "Add university"
-	= f.text_field :title
-	= f.submit 'Create'
+  = f.text_field :title, :class => "input-form-edit"
+  = f.submit :class => "btn btn-default add-btn-default"
