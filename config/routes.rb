@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :scholars
-  devise_for :teachers
+  devise_for :scholars, :controllers => {:sessions => 'scholar/sessions'}
+  devise_for :teachers, :controllers => {:sessions => 'teacher/sessions'}
   devise_for :admins
 
   namespace :admin do

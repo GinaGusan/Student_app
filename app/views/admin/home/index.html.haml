@@ -14,7 +14,7 @@
               %th
                 Last sign in
           %tbody
-            - @scholars.sort{|l,r| l.last_sign_in_at <=> r.last_sign_in_at}.each do |s|
+            - @scholars.sort{|l,r| r.last_sign_in_at <=> l.last_sign_in_at}.each do |s|
               %tr
                 %td
                   = s.email

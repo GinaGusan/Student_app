@@ -1,16 +1,24 @@
-#navbar{ 
+.navbar{
+	min-height: $header_height;
+	border-radius: 0px;
+	border: none;
+	border-bottom: 1px solid;
+}
+
+.navbar-default{
+	background-color: $header_color;
+	border-color: $border_color;
+
 	.navbar-brand{
+		color: $logo_font_color;	
 		font-family: $font_logo;
-		font-size: 40px;
+		line-height: 40px;
+		font-size: 36px;
+		height: $header_height;
+		padding: 20px 15px;
 
-		span{
-			float: right;
-			padding-top: 13px;
-			margin-left: 3px;
-		}
-
-		.icon-beer{
-			font-family: none;
+		&.icon-header{
+	
 			&:before{
 				content: "";
 				background-image: asset-url('header-icon.png');
@@ -20,9 +28,25 @@
 			}
 		}
 	}
-}
+ 
+	// .navbar-nav{
 
-#content{
-	margin-top: 0px;
+	// 	.open{
+	// 		a{
+	// 			background-color: initial;
+
+	// 			&:hover{
+	// 				background-color: initial;
+	// 			}
+
+	// 			&:focus{
+	// 				background-color: initial;
+	// 			}
+
+	// 		}
+
+	// 	}
+
+	// } 
 }
 

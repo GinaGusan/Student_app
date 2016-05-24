@@ -1,25 +1,51 @@
-%h3 Weekly timetable
-- @courses.sort{|l,r| l.day <=> r.day}.group_by{|c| c.day}.each do |day, courses|
-	%h3 
-		= Course.working_days.keys[day]
-	- courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
-		%b
-			= c.title
-		%br
-		= Course.course_starting_hours.keys[c.start_time]
-		%br
-		= Course.course_ending_hours.keys[c.end_time]
-		%br
-		= c.room_num
-		%br
-		= c.type_lesson
-		%br
-		= c.teacher_name
-		%br
-		= c.timetable.group.title
-		%br
-		= c.timetable.sem_number
-		%br
-		= c.timetable.group.specialty.faculty.title
-		%br
-		%br
+.container
+  .row
+    .col-md-12
+      %h2.text-center.heading-font
+        Weekly timetable
+      %hr
+      - @courses.sort{|l,r| l.day <=> r.day}.group_by{|c| c.day}.each do |day, courses|
+        %h3.text-left.heading-font
+          = Course.working_days.keys[day]
+        %table.table.table-condensed.heading-font.heading-font-table
+          %thead
+            %tr
+              %th
+                Course title
+              %th
+                Starting hour
+              %th
+                Ending hour
+              %th
+                Room number
+              %th
+                Lesson type
+              %th
+                Teacher's name
+              %th
+                Group
+              %th
+                Faculty
+              %th
+          %tbody
+            - courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
+              %tr
+                %td
+                  %b
+                    = c.title
+                %td
+                  = Course.course_starting_hours.keys[c.start_time]
+                %td
+                  = Course.course_ending_hours.keys[c.end_time]
+                %td
+                  = c.room_num
+                %td
+                  = c.type_lesson
+                %td
+                  = c.teacher_name
+                %td
+                  = c.timetable.group.title
+                %td
+                  = c.timetable.group.specialty.faculty.title
+                %td
+                

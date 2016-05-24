@@ -1,72 +1,62 @@
-%h1 Hi teacher's home page
+.container
+  .row
+    .col-md-12
+      %h2.text-center.heading-font
+        Check today's timetable
+      = link_to(teacher_timetables_path, :class => "icon-left timetable-button") do
+        %span
+          %b
+            Weekly timetable
+      %hr
+      - @courses.sort{|l,r| l.day <=> r.day}.group_by{|c| c.day}.each do |day, courses|
+        - if Time.now.strftime("%A") == Course.working_days.keys[day]
+          %h3.text-center.heading-font
+            = Course.working_days.keys[day]
+          %table.table.table-condensed.heading-font.heading-font-table
+            %thead
+              %tr
+                %th
+                  Course title
+                %th
+                  Starting hour
+                %th
+                  Ending hour
+                %th
+                  Room number
+                %th
+                  Lesson type
+                %th
+                  Teacher's name
+                %th
+                  Group
+                %th
+                  Faculty
+                %th
+            %tbody
+              - courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
+                %tr
+                  %td
+                    %b
+                      = c.title
+                  %td
+                    = Course.course_starting_hours.keys[c.start_time]
+                  %td
+                    = Course.course_ending_hours.keys[c.end_time]
+                  %td
+                    = c.room_num
+                  %td
+                    = c.type_lesson
+                  %td
+                    = c.teacher_name
+                  %td
+                    = c.timetable.group.title
+                  %td
+                    = c.timetable.group.specialty.faculty.title
+                  %td
+                
 
-= link_to 'Sign in', teacher_session_path, :method => :post
-= link_to 'Sign out', destroy_teacher_session_path, :method => :delete
-%br
-= link_to 'Go to timetable', teacher_timetables_path
-%br
-/ %ul
-/ 	- @courses.each do |t|
-/ 		%li
-/ 			%h3
-/ 				= t.title
-/ 			Semester:
-/ 			= Semester.find(t.semester_id).sem_number
-/
-/ - @courses.semesters.group.each do |s|
-/ 	%b
-/ 		= Group.find(s.group_id).title
-/ 		%br
-
-/ - @courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
-/ 	- if Time.now.strftime("%A") == Course.working_days.keys[c.day]
-/ 		%h2
-/ 			= Course.working_days.keys[c.day]
-/ 		%br
-/ 		%b
-/ 			= c.title
-/ 		%br
-/ 		= Course.course_starting_hours.keys[c.start_time]
-/ 		%br
-/ 		= Course.course_ending_hours.keys[c.end_time]
-/ 		%br
-/ 		= c.room_num
-/ 		%br
-/ 		= c.type_lesson
-/ 		%br
-/ 		= c.teacher_name
-/ 		%br
-/ 		= c.semester.group.title
-/ 		%br
-/ 		= c.semester.group.specialty.faculty.title
-- @courses.sort{|l,r| l.day <=> r.day}.group_by{|c| c.day}.each do |day, courses|
-	- if Time.now.strftime("%A") == Course.working_days.keys[day]
-		%h3 
-			= Course.working_days.keys[day]
-		- courses.sort{|l,r| l.start_time <=> r.start_time}.each do |c|
-			%b
-				= c.title
-			%br
-			= Course.course_starting_hours.keys[c.start_time]
-			%br
-			= Course.course_ending_hours.keys[c.end_time]
-			%br
-			= c.room_num
-			%br
-			= c.type_lesson
-			%br
-			= c.teacher_name
-			%br
-			= c.timetable.group.title
-			%br
-			= c.timetable.sem_number
-			%br
-			= c.timetable.group.specialty.faculty.title
-			%br
-			%br
-
-		
-		
+  
+  
 
 
 

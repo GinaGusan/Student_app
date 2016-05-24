@@ -1,0 +1,53 @@
+footer{
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  &.footer-default{
+    height: 100px;
+    margin-top: 80px;
+    margin-bottom: 0px;
+    border-top: 1px solid;
+    background-color: $header_color;
+    border-color: $border_color;
+    line-height: 1;
+    font-size: 18px;
+  }
+}
+
+.copyright-wrapper{
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  @include clearfix;
+
+  span{
+    &:before {
+      content: "";
+      background-image: asset-url('delete.png');
+      width: 18px;
+      height: 18px;
+
+    }
+  }
+}
+
+// .footer-icon{
+//   &:before{
+//       content: "";
+//       background-image: asset-url('delete.png');
+//       width: 18px;
+//       height: 18px;
+//   }
+// }
+
+.copyright-info{
+  // text-align: center;
+  color: $general_font_color;
+  font-family: $font_lato;
+
+  .brand-name{
+    color: $logo_font_color; 
+    font-family: $font_logo;
+  }
+}

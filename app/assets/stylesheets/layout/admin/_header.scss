@@ -1,0 +1,28 @@
+#navbar{ 
+	.navbar-brand{
+		font-family: $font_logo;
+		font-size: 40px;
+
+		span{
+			float: right;
+			padding-top: 13px;
+			margin-left: 3px;
+		}
+
+		.icon-beer{
+			font-family: none;
+			&:before{
+				content: "";
+				background-image: asset-url('header-icon.png');
+				width: 32px;
+				height: 32px;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+}
+
+#content{
+	margin-top: 0px;
+}
+

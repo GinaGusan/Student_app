@@ -33,7 +33,9 @@
     = yield :head
 
   %body.main
+    = render partial: "layouts/header"
     = yield
+    = render partial: "layouts/footer"
 
     / / Navbar
     / = render partial: 'layouts/hq/partials/navbar'

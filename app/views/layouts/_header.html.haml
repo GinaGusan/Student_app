@@ -1,0 +1,16 @@
+%nav.navbar.navbar-default
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "inClass", root_path, :class => "navbar-brand icon-header"
+    %ul.nav.navbar-nav.navbar-right
+      - if teacher_signed_in?
+        = render partial: "layouts/header_teacher_logged_in"
+
+      - if scholar_signed_in?
+        = render partial: "layouts/header_scholar_logged_in"

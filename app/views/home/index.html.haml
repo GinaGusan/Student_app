@@ -1,17 +1,19 @@
-%h1 Hi home page
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      %h2.text-center.heading-font.heading-font-title
+        Welcome to your personal
+      %h2.text-center.heading-font
+        Timetable Manager
+      %ul.log-class
+        %li.btn.btn-default
+          = link_to(teacher_session_path, :method => :post, :class => "icon-left teacher-button") do
+            %span
+              Sign in as Teacher
+        %li.btn.btn-default.list
+          = link_to(scholar_session_path, :method => :post, :class => "icon-left student-button") do
+            %span
+              Sign in as Student
+      
 
-= form_for :university, url: admin_universities_path do |f|
-	= f.label "Add university"
-	= f.text_field :title
-	= f.submit
-= link_to 'Sign in as admin', admin_session_path, :method => :post
-= link_to 'Sign out as admin', destroy_admin_session_path, :method => :delete
-%br
-= link_to 'Sign in as teacher', teacher_session_path, :method => :post
-= link_to 'Sign out as teacher', destroy_teacher_session_path, :method => :delete
-%br
-= link_to 'Sign in as student', scholar_session_path, :method => :post
-= link_to 'Sign out as student', destroy_scholar_session_path, :method => :delete
-%br
-= link_to 'All universities', admin_universities_path
 
