@@ -6,7 +6,7 @@
       = link_to(new_admin_university_path, :method =>:get, :remote => true, :class => "icon-left add-button") do
         %span
           Add university
-        #new-university
+      #new-university
       %hr
       - @universities.order(:title).each do |u|
         %ul.action-block

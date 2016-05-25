@@ -13,3 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+
+$(function() {
+	var footerHeight = $('.footer-default').outerHeight(true),
+		navbarHeight = $('.navbar-default').outerHeight(true),
+		windowHeight = $(window).height(),
+		containerHeight = 0;
+
+	containerHeight = windowHeight - navbarHeight - footerHeight;
+	$('.main-wrapper').css('min-height', containerHeight)
+
+	console.log(containerHeight)
+})

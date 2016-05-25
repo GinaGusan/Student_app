@@ -34,7 +34,8 @@
 
   %body.main
     = render partial: "layouts/header"
-    = yield
+    .main-wrapper
+      = yield
     = render partial: "layouts/footer"
 
     / / Navbar

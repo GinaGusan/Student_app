@@ -3,6 +3,7 @@
 	border-radius: 0px;
 	border: none;
 	border-bottom: 1px solid;
+
 }
 
 .navbar-default{
@@ -28,25 +29,10 @@
 			}
 		}
 	}
- 
-	// .navbar-nav{
+}
 
-	// 	.open{
-	// 		a{
-	// 			background-color: initial;
-
-	// 			&:hover{
-	// 				background-color: initial;
-	// 			}
-
-	// 			&:focus{
-	// 				background-color: initial;
-	// 			}
-
-	// 		}
-
-	// 	}
-
-	// } 
+.dropdown{
+	margin-top: 30px;
+	color: $general_font_color;
 }
 
